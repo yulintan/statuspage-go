@@ -29,6 +29,7 @@ type Client struct {
 	// Services used for talking to different parts of the Statuspage API.
 	Page      *PageService
 	Component *ComponentService
+	Incident  *IncidentService
 }
 
 type service struct {
@@ -120,6 +121,7 @@ func NewClient(token string, httpClient *http.Client) *Client {
 	c.common.client = c
 	c.Page = (*PageService)(&c.common)
 	c.Component = (*ComponentService)(&c.common)
+	c.Incident = (*IncidentService)(&c.common)
 
 	return c
 }

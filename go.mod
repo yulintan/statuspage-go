@@ -1,3 +1,3 @@
-module github.com/nagelflorian/statuspage-go
+module github.com/yulintan/statuspage-go
 
-go 1.12
+go 1.16
