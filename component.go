@@ -77,9 +77,9 @@ type UpdateComponentParams struct {
 	Description        string    `json:"description,omitempty"`
 	Status             string    `json:"status,omitempty"`
 	Name               string    `json:"name,omitempty"`
-	OnlyShowIfDegraded string    `json:"only_show_if_degraded,omitempty"`
+	OnlyShowIfDegraded bool      `json:"only_show_if_degraded,omitempty"`
 	GroupID            string    `json:"group_id,omitempty"`
-	Showcase           string    `json:"showcase,omitempty"`
+	Showcase           bool      `json:"showcase,omitempty"`
 	StartDate          Timestamp `json:"start_date,omitempty"`
 }
 
