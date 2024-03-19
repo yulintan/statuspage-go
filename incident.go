@@ -71,11 +71,26 @@ func (s *IncidentService) ListIncidents(ctx context.Context, pageID string) ([]I
 	return incident, err
 }
 
-// ListIncidents returns incident information for a given page id
+// CreateIncident creates a incident
 func (s *IncidentService) CreateIncident(ctx context.Context, pageID string, incident UpdateIncidentParams) (*Incident, error) {
 	path := "v1/pages/" + pageID + "/incidents"
 	payload := UpdateIncidentRequestBody{Incident: incident}
 	req, err := s.client.newRequest("POST", path, payload)
+	if err != nil {
+		return nil, err
+	}
+
+	var updatedIncident Incident
+	_, err = s.client.do(ctx, req, &updatedIncident)
+
+	return &updatedIncident, err
+}
+
+// UpdateIncident updates an incident
+func (s *IncidentService) UpdateIncident(ctx context.Context, pageID, incidentID string, incident UpdateIncidentParams) (*Incident, error) {
+	path := "v1/pages/" + pageID + "/incidents/" + incidentID
+	payload := UpdateIncidentRequestBody{Incident: incident}
+	req, err := s.client.newRequest("PUT", path, payload)
 	if err != nil {
 		return nil, err
 	}
