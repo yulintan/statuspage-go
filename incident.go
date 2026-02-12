@@ -12,30 +12,54 @@ type IncidentService service
 
 // Incident is the Statuspage API incident representation
 type Incident struct {
-	ID                            *string     `json:"id,omitempty"`
-	Components                    []Component `json:"components,omitempty"`
-	CreatedAt                     *Timestamp  `json:"created_at,omitempty"`
-	Impact                        *string     `json:"impact,omitempty"`
-	ImpactOverride                *string     `json:"impact_override,omitempty"`
-	MonitoringAt                  *Timestamp  `json:"monitoring_at,omitempty"`
-	Name                          *string     `json:"name,omitempty"`
-	PageID                        *string     `json:"page_id,omitempty"`
-	PortmortemBody                *string     `json:"portmortem_body,omitempty"`
-	PostmortemBodyLastUpdatedAt   *Timestamp  `json:"postmortem_body_last_updated_at,omitempty"`
-	PostmortemIgnored             *bool       `json:"postmortem_ignored,omitempty"`
-	PostmortemNotifiedSubscribers *bool       `json:"postmortem_notified_subscribers,omitempty"`
-	PostmortemNotifiedTwitter     *bool       `json:"postmortem_notified_twitter,omitempty"`
-	PostmortemPublishedAt         *string     `json:"postmortem_published_at,omitempty"`
-	ResolvedAt                    *Timestamp  `json:"resolved_at,omitempty"`
-	ScheduledAutoCompleted        *bool       `json:"scheduled_auto_completed,omitempty"`
-	ScheduledAutoInProgress       *bool       `json:"scheduled_auto_in_progress,omitempty"`
-	ScheduledFor                  *Timestamp  `json:"scheduled_for,omitempty"`
-	ScheduledRemindPrior          *bool       `json:"scheduled_remind_prior,omitempty"`
-	ScheduledRemindedAt           *Timestamp  `json:"scheduled_reminded_at,omitempty"`
-	ScheduledUntil                *Timestamp  `json:"scheduled_until,omitempty"`
-	Shortlink                     *string     `json:"shortlink,omitempty"`
-	Status                        *string     `json:"status,omitempty"`
-	UpdatedAt                     *Timestamp  `json:"updated_at,omitempty"`
+	ID                            *string          `json:"id,omitempty"`
+	Components                    []Component      `json:"components,omitempty"`
+	CreatedAt                     *Timestamp       `json:"created_at,omitempty"`
+	Impact                        *string          `json:"impact,omitempty"`
+	ImpactOverride                *string          `json:"impact_override,omitempty"`
+	MonitoringAt                  *Timestamp       `json:"monitoring_at,omitempty"`
+	Name                          *string          `json:"name,omitempty"`
+	PageID                        *string          `json:"page_id,omitempty"`
+	PortmortemBody                *string          `json:"portmortem_body,omitempty"`
+	PostmortemBodyLastUpdatedAt   *Timestamp       `json:"postmortem_body_last_updated_at,omitempty"`
+	PostmortemIgnored             *bool            `json:"postmortem_ignored,omitempty"`
+	PostmortemNotifiedSubscribers *bool            `json:"postmortem_notified_subscribers,omitempty"`
+	PostmortemNotifiedTwitter     *bool            `json:"postmortem_notified_twitter,omitempty"`
+	PostmortemPublishedAt         *string          `json:"postmortem_published_at,omitempty"`
+	ResolvedAt                    *Timestamp       `json:"resolved_at,omitempty"`
+	ScheduledAutoCompleted        *bool            `json:"scheduled_auto_completed,omitempty"`
+	ScheduledAutoInProgress       *bool            `json:"scheduled_auto_in_progress,omitempty"`
+	ScheduledFor                  *Timestamp       `json:"scheduled_for,omitempty"`
+	ScheduledRemindPrior          *bool            `json:"scheduled_remind_prior,omitempty"`
+	ScheduledRemindedAt           *Timestamp       `json:"scheduled_reminded_at,omitempty"`
+	ScheduledUntil                *Timestamp       `json:"scheduled_until,omitempty"`
+	Shortlink                     *string          `json:"shortlink,omitempty"`
+	Status                        *string          `json:"status,omitempty"`
+	UpdatedAt                     *Timestamp       `json:"updated_at,omitempty"`
+	IncidentUpdates               []IncidentUpdate `json:"incident_updates,omitempty"`
+}
+
+// AffectedComponent is the Statuspage API affected component representation
+type AffectedComponent struct {
+	Code      *string `json:"code,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	OldStatus *string `json:"old_status,omitempty"`
+	NewStatus *string `json:"new_status,omitempty"`
+}
+
+// IncidentUpdate is the Statuspage API incident update representation
+type IncidentUpdate struct {
+	ID                   *string             `json:"id,omitempty"`
+	IncidentID           *string             `json:"incident_id,omitempty"`
+	Status               *string             `json:"status,omitempty"`
+	Body                 *string             `json:"body,omitempty"`
+	CreatedAt            *Timestamp          `json:"created_at,omitempty"`
+	UpdatedAt            *Timestamp          `json:"updated_at,omitempty"`
+	DisplayAt            *Timestamp          `json:"display_at,omitempty"`
+	AffectedComponents   []AffectedComponent `json:"affected_components,omitempty"`
+	DeliverNotifications *bool               `json:"deliver_notifications,omitempty"`
+	CustomTweet          *string             `json:"custom_tweet,omitempty"`
+	TweetID              *string             `json:"tweet_id,omitempty"`
 }
 
 // UpdateIncidentParams are the parameters that can be changed using the update incident API endpoint
